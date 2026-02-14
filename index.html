@@ -6,158 +6,338 @@
     <title>HD APPS LTD</title>
     <style>
         :root {
-            --bg-color: #000000;
-            --text-color: #e0e0e0;
-            --accent-color: #33ff00; /* Hacker Green for links/accents */
-            --border-color: #333333;
-            --button-bg: #111111;
-            --button-hover: #222222;
+            --bg: #000000;
+            --text: #ffffff;
+            --muted: #888888;
+            --border: #333333;
+            --accent: #f7931a;
+            --link: #ffffff;
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --text: #000000;
+            --muted: #666666;
+            --border: #e0e0e0;
+            --accent: #f7931a;
+            --link: #000000;
         }
 
         body {
-            font-family: 'Courier New', Courier, monospace; /* Strict Monospace */
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+            gap: 60px;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .container-limited {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        /* HEADER & MENU */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .brand h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        /* NEW: Navigation Menu */
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text);
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        button#theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 8px 12px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        button#theme-toggle:hover {
+            color: var(--text);
+            border-color: var(--text);
+        }
+
+        main {
             flex: 1;
         }
 
-        header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
+        .view-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .view-section.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 60px;
+            align-items: start;
+        }
+        
+        .view-section.single-col {
+            display: none;
+        }
+        .view-section.single-col.active {
+            display: block;
+            max-width: 800px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            border-left: 2px solid var(--accent);
+            padding-left: 20px;
             margin-bottom: 40px;
-        }
-
-        /* Fixed Alignment */
-        h1 {
-            color: #ffffff;
-            font-size: 1.5rem;
-            margin: 0;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center; /* Ensures vertical centering */
-            gap: 12px; /* Space between dot and text */
-        }
-
-        .status-dot {
-            height: 12px;
-            width: 12px;
-            background-color: #2ea043;
-            border-radius: 50%;
-            display: inline-block;
-            /* No margins needed because of flex gap */
         }
 
         h2 {
-            font-size: 1.1rem;
-            color: #ffffff;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--text);
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        p {
-            margin-bottom: 20px;
-            font-size: 0.95rem;
+        .project-card {
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            color: var(--accent);
         }
 
         a {
-            color: var(--text-color);
+            color: var(--link);
             text-decoration: underline;
-            text-decoration-color: var(--border-color);
-            text-underline-offset: 4px;
-        }
-
-        a:hover {
-            color: #ffffff;
-            text-decoration-color: #ffffff;
-        }
-
-        /* Button Styling */
-        .btn {
-            display: inline-block;
-            background-color: var(--button-bg);
-            color: #ffffff;
-            padding: 12px 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-
-        .btn:hover {
-            background-color: var(--button-hover);
-            border-color: #666;
-            text-decoration: none;
-        }
-
-        .section {
-            margin-bottom: 40px;
         }
 
         footer {
-            margin-top: auto;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
             font-size: 0.75rem;
-            color: #666;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .legal-block strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        @media (max-width: 850px) {
+            .view-section.active {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .controls {
+                width: 100%;
+                justify-content: space-between;
+            }
         }
     </style>
 </head>
-<body>
+<body onload="initTheme()">
 
-    <div class="container">
+    <header class="container-limited">
+        <div class="brand">
+            <h1>HD APPS LTD</h1>
+        </div>
         
-        <header>
-            <h1><span class="status-dot"></span>HD APPS LTD</h1>
-        </header>
+        <div class="controls">
+            <nav>
+                <ul>
+                    <li><a onclick="switchView('home')" id="nav-home" class="active">Home</a></li>
+                    <li><a onclick="switchView('privacy')" id="nav-privacy">Privacy</a></li>
+                    <li><a href="mailto:contact@hd-apps.com">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" onclick="toggleTheme()">Theme</button>
+        </div>
+    </header>
 
-        <div class="section">
-            <p>
-                We are a small development team building mobile apps for iOS and Android. 
-                We focus on security, privacy, and clean code.
-            </p>
+    <main class="container-limited">
+        
+        <div id="home-view" class="view-section active">
+            <div class="left-col">
+                <div class="intro-text">
+                    We build open-source, non-custodial Bitcoin infrastructure.
+                    <br><br>
+                    No tracking. No analytics. No third parties.
+                    <br><br>
+                    Just pure, verifiable code.
+                </div>
+            </div>
+
+            <div class="right-col">
+                <h2>Projects</h2>
+                
+                <div class="project-card">
+                    <h3>Trustless Wallet</h3>
+                    <p>A privacy-focused, Bitcoin-only wallet for Android.</p>
+                    <p style="font-size: 0.9rem; color: var(--muted);">
+                        Features: Coin control, Custom Node, Tor Support.
+                    </p>
+                    <br>
+                    <a href="https://trustlesswallet.github.io/Trustless/" target="_blank">Visit Project Page &rarr;</a>
+                </div>
+
+            </div>
         </div>
 
-        <div class="section">
-            <h2>Current Work</h2>
-            <p>Our main project is a Bitcoin wallet that puts you in control.</p>
-            <a href="https://trustlesswallet.github.io/Trustless/" class="btn" target="_blank">
-                Check out Trustless Wallet &rarr;
-            </a>
+        <div id="privacy-view" class="view-section single-col">
+            <h2>Privacy Policy</h2>
+            <p><strong>Last Updated: February 2026</strong></p>
+            <p>HD APPS LTD ("we", "our") operates with a strict philosophy of data minimization.</p>
+            
+            <br>
+            <h3>1. Data Collection</h3>
+            <p>We do not collect, store, or transmit personal data. Our applications run locally on your device.</p>
+            <ul>
+                <li>No account registration required.</li>
+                <li>No IP address logging.</li>
+                <li>No analytics trackers (e.g., Google Analytics, Firebase).</li>
+            </ul>
+
+            <br>
+            <h3>2. Key Management</h3>
+            <p>Private keys are generated on your device and are encrypted using secure storage mechanisms provided by the operating system. We never have access to your funds or keys.</p>
+
+            <br>
+            <h3>3. Network Communications</h3>
+            <p>Our applications communicate directly with the Bitcoin blockchain or public Electrum servers. You may configure your own node to eliminate reliance on public infrastructure.</p>
+
+            <br>
+            <h3>4. Contact</h3>
+            <p>For privacy inquiries: <a href="mailto:contact@hd-apps.com">contact@hd-apps.com</a></p>
         </div>
 
-        <div class="section">
-            <h2>Get in Touch</h2>
-            <p>
-                Have a question or found a bug? Send us an email.<br>
-                <a href="mailto:contact@hd-apps.com">contact@hd-apps.com</a>
-            </p>
+    </main>
+
+    <footer class="container-limited">
+        <div class="legal-block">
+            <strong>LEGAL ENTITY</strong>
+            HD APPS LTD<br>
+            Co. No. 16990282
         </div>
+        <div class="legal-block">
+            <strong>REGISTERED OFFICE</strong>
+            71-75 Shelton Street<br>
+            Covent Garden, London, WC2H 9JQ
+        </div>
+        <div class="legal-block">
+            <strong>CONTACT</strong>
+            contact@hd-apps.com
+        </div>
+    </footer>
 
-        <footer>
-            <p>
-                <strong>HD APPS LTD</strong><br>
-                Registered in England & Wales. Company No. 16990282<br>
-                71-75 Shelton Street, Covent Garden, London, WC2H 9JQ
-            </p>
-        </footer>
+    <script>
+        // THEME LOGIC
+        function initTheme() {
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const currentTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+            document.body.setAttribute('data-theme', currentTheme);
+        }
 
-    </div>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
 
+        function switchView(viewName) {
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.querySelectorAll('nav a').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            if (viewName === 'home') {
+                document.getElementById('home-view').classList.add('active');
+                document.getElementById('nav-home').classList.add('active');
+            } else if (viewName === 'privacy') {
+                document.getElementById('privacy-view').classList.add('active');
+                document.getElementById('nav-privacy').classList.add('active');
+            }
+        }
+        
+        initTheme();
+    </script>
 </body>
 </html>
