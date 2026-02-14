@@ -8,14 +8,14 @@
         :root {
             --bg-color: #000000;
             --text-color: #e0e0e0;
-            --accent-color: #33ff00;
+            --accent-color: #33ff00; /* Hacker Green for links/accents */
             --border-color: #333333;
             --button-bg: #111111;
             --button-hover: #222222;
         }
 
         body {
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Courier New', Courier, monospace; /* Strict Monospace */
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -27,54 +27,51 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 40px 20px;
             flex: 1;
         }
 
-        /* Nav */
-        nav {
+        header {
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 20px;
             margin-bottom: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
+        /* Fixed Alignment */
         h1 {
             color: #ffffff;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin: 0;
+            letter-spacing: -0.5px;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: center; /* Ensures vertical centering */
+            gap: 12px; /* Space between dot and text */
         }
 
         .status-dot {
-            height: 10px;
-            width: 10px;
+            height: 12px;
+            width: 12px;
             background-color: #2ea043;
             border-radius: 50%;
             display: inline-block;
+            /* No margins needed because of flex gap */
         }
 
         h2 {
             font-size: 1.1rem;
             color: #ffffff;
-            margin-top: 40px;
+            margin-top: 30px;
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-bottom: 1px solid #222;
-            padding-bottom: 10px;
         }
 
-        p { margin-bottom: 20px; font-size: 0.95rem; }
-
-        ul { list-style-type: square; padding-left: 20px; }
-        li { margin-bottom: 10px; color: #ccc; }
+        p {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
 
         a {
             color: var(--text-color);
@@ -82,80 +79,72 @@
             text-decoration-color: var(--border-color);
             text-underline-offset: 4px;
         }
-        a:hover { color: #ffffff; text-decoration-color: #ffffff; }
 
+        a:hover {
+            color: #ffffff;
+            text-decoration-color: #ffffff;
+        }
+
+        /* Button Styling */
         .btn {
             display: inline-block;
             background-color: var(--button-bg);
             color: #ffffff;
-            padding: 10px 18px;
+            padding: 12px 20px;
             border: 1px solid var(--border-color);
             border-radius: 4px;
             font-size: 0.9rem;
+            transition: all 0.2s ease;
             text-decoration: none;
             margin-top: 10px;
         }
-        .btn:hover { background-color: var(--button-hover); border-color: #666; }
+
+        .btn:hover {
+            background-color: var(--button-hover);
+            border-color: #666;
+            text-decoration: none;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
 
         footer {
             margin-top: auto;
-            padding-top: 40px;
+            padding-top: 20px;
             border-top: 1px solid var(--border-color);
             font-size: 0.75rem;
             color: #666;
         }
-        
-        .legal-text { font-size: 0.8rem; color: #888; }
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <nav>
+        <header>
             <h1><span class="status-dot"></span>HD APPS LTD</h1>
-            <div style="font-size: 0.9rem;">London, UK</div>
-        </nav>
+        </header>
 
         <div class="section">
             <p>
-                <strong>HD APPS LTD</strong> is a UK-based software development company specializing in decentralized infrastructure and high-security mobile applications.
-            </p>
-            <p>
-                We build tools that prioritize user sovereignty, data privacy, and cryptographic security. Our software is designed to operate in trustless environments without reliance on centralized intermediaries.
+                We are a small development team building mobile apps for iOS and Android. 
+                We focus on security, privacy, and clean code.
             </p>
         </div>
 
         <div class="section">
-            <h2>Projects</h2>
-            <p><strong>Trustless Wallet</strong></p>
-            <p>A non-custodial Bitcoin wallet designed for advanced users. Features include:</p>
-            <ul>
-                <li>Full non-custodial key management.</li>
-                <li>Open-source architecture.</li>
-                <li>Direct blockchain interaction (SPV/Electrum).</li>
-                <li>No user tracking or analytics.</li>
-            </ul>
+            <h2>Current Work</h2>
+            <p>Our main project is a Bitcoin wallet that puts you in control.</p>
             <a href="https://trustlesswallet.github.io/Trustless/" class="btn" target="_blank">
-                View Source &rarr;
+                Check out Trustless Wallet &rarr;
             </a>
         </div>
 
         <div class="section">
-            <h2>Privacy Policy</h2>
-            <p class="legal-text">
-                Last Updated: February 2026<br><br>
-                HD APPS LTD does not collect, store, or process personal user data through our applications. 
-                All private keys and sensitive data are generated and stored locally on the user's device. 
-                Our applications do not utilize third-party analytics trackers. 
-                Network requests are routed directly to public blockchain nodes.
-            </p>
-        </div>
-
-        <div class="section">
-            <h2>Contact & Support</h2>
+            <h2>Get in Touch</h2>
             <p>
-                For technical support, business inquiries, or verification:<br>
+                Have a question or found a bug? Send us an email.<br>
                 <a href="mailto:contact@hd-apps.com">contact@hd-apps.com</a>
             </p>
         </div>
@@ -166,7 +155,6 @@
                 Registered in England & Wales. Company No. 16990282<br>
                 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ
             </p>
-            <p>&copy; 2026 HD APPS LTD. All Rights Reserved.</p>
         </footer>
 
     </div>
