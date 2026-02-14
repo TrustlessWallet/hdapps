@@ -45,7 +45,6 @@
             width: 100%;
         }
 
-        /* HEADER & MENU */
         header {
             display: flex;
             justify-content: space-between;
@@ -64,7 +63,6 @@
             line-height: 1;
         }
 
-        /* NEW: Navigation Menu */
         nav ul {
             display: flex;
             gap: 20px;
@@ -155,19 +153,51 @@
         }
 
         .project-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
             border: 1px solid var(--border);
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
+            cursor: pointer;
         }
 
         .project-card:hover {
             border-color: var(--accent);
+            background-color: rgba(255, 255, 255, 0.03);
+            transform: translateY(-2px);
         }
 
         .project-card h3 {
             margin-top: 0;
             color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background-color: rgba(136, 136, 136, 0.1);
+            color: var(--muted);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .arrow-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--link);
+            text-decoration: underline;
+            font-size: 0.9rem;
         }
 
         a {
@@ -244,15 +274,21 @@
             <div class="right-col">
                 <h2>Projects</h2>
                 
-                <div class="project-card">
+                <a href="https://trustlesswallet.github.io/Trustless/" target="_blank" class="project-card">
                     <h3>Trustless Wallet</h3>
-                    <p>A privacy-focused, Bitcoin-only wallet for Android.</p>
-                    <p style="font-size: 0.9rem; color: var(--muted);">
-                        Features: Coin control, Custom Node, Tor Support.
-                    </p>
-                    <br>
-                    <a href="https://trustlesswallet.github.io/Trustless/" target="_blank">Visit Project Page &rarr;</a>
-                </div>
+                    <p>A minimalist, non-custodial Bitcoin wallet designed for power users who demand full control over their keys and UTXOs.</p>
+                    
+                    <div class="feature-tags">
+                        <span class="tag">Coin Control</span>
+                        <span class="tag">Address Tracker</span>
+                        <span class="tag">UTXO Management</span>
+                        <span class="tag">Custom Node (Electrum)</span>
+                        <span class="tag">BIP44</span>
+                        <span class="tag">Testnet Switch</span>
+                    </div>
+
+                    <span class="arrow-link">View Project &rarr;</span>
+                </a>
 
             </div>
         </div>
@@ -304,7 +340,6 @@
     </footer>
 
     <script>
-        // THEME LOGIC
         function initTheme() {
             const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
             const currentTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
