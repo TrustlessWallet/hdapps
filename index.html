@@ -118,16 +118,9 @@
 
         .view-section.active {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns for desktop */
+            grid-template-columns: 1fr 1fr;
             gap: 0 60px;
             align-items: start;
-        }
-        
-        /* Specific layout for the right column to stack items */
-        .right-col {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
         }
 
         .view-section.single-col {
@@ -144,11 +137,12 @@
         }
 
         .intro-text {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
             border-left: 2px solid var(--accent);
             padding-left: 20px;
             margin-bottom: 40px;
+            color: var(--muted);
         }
 
         h2 {
@@ -163,21 +157,22 @@
              font-size: 1rem;
              margin-top: 0;
              color: var(--accent);
+             margin-bottom: 10px;
         }
 
-        /* NEW: Values Grid */
+        /* Values Grid */
         .values-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
-            margin-bottom: 50px;
-            border-top: 1px solid var(--border);
-            padding-top: 30px;
+            margin-bottom: 20px;
         }
         
         .value-item p {
             font-size: 0.9rem;
             color: var(--muted);
+            line-height: 1.5;
+            margin: 0;
         }
 
         .project-card {
@@ -197,7 +192,12 @@
             transform: translateY(-2px);
         }
 
-        .feature-tags, .stack-tags {
+        .project-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
@@ -219,23 +219,6 @@
             color: var(--link);
             text-decoration: underline;
             font-size: 0.9rem;
-        }
-        
-        /* NEW: Tech Stack & Verification */
-        .tech-stack {
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-        }
-
-        .pgp-key {
-            display: block;
-            background-color: rgba(136,136,136,0.1);
-            padding: 15px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin-top: 10px;
-            border: 1px dashed var(--border);
         }
 
         a {
@@ -300,74 +283,49 @@
         
         <div id="home-view" class="view-section active">
             <div class="left-col">
+                <h2>About</h2>
                 <div class="intro-text">
-                    We build open-source, non-custodial Bitcoin infrastructure.
+                    We are a small team of engineers building tools for Bitcoiners. 
+                    We believe money should be private and independent. 
                     <br><br>
-                    No tracking. No analytics. No third parties.
-                    <br><br>
-                    Just pure, verifiable code.
+                    That's why we don't track you, we don't run analytics, and we don't hide our code. 
+                    What you see is what you get.
                 </div>
 
+                <h2>Philosophy</h2>
                 <div class="values-grid">
                     <div class="value-item">
-                        <h3>01. Sovereignty</h3>
-                        <p>We build tools that remove dependencies. No servers. No middlemen. Just you and the network.</p>
+                        <h3>01. Independence</h3>
+                        <p>We hate relying on servers. Our apps connect directly to the network so you don't have to trust us to keep the lights on.</p>
                     </div>
                     <div class="value-item">
-                        <h3>02. Open Source</h3>
-                        <p>Security requires transparency. All our code is verifiable and open for audit on GitHub.</p>
+                        <h3>02. Transparency</h3>
+                        <p>Security is hard, but it's impossible without open code. Everything we build is open for you to verify on GitHub.</p>
                     </div>
                     <div class="value-item">
-                        <h3>03. Maximalism</h3>
-                        <p>We focus exclusively on Bitcoin. No noise, no altcoins, no distraction.</p>
+                        <h3>03. Focus</h3>
+                        <p>We do one thing: Bitcoin. No distractions, no noise, and definitely no altcoins.</p>
                     </div>
                 </div>
             </div>
 
             <div class="right-col">
-                
-                <div>
-                    <h2>Projects</h2>
-                    <a href="https://trustlesswallet.github.io/Trustless/" target="_blank" class="project-card">
-                        <h3>Trustless Wallet</h3>
-                        <p>A minimalist, non-custodial Bitcoin wallet designed for power users who demand full control over their keys and UTXOs.</p>
-                        
-                        <div class="feature-tags">
-                            <span class="tag">Coin Control</span>
-                            <span class="tag">Address Tracker</span>
-                            <span class="tag">UTXO Management</span>
-                            <span class="tag">Custom Node (Electrum)</span>
-                            <span class="tag">BIP44</span>
-                            <span class="tag">Testnet Switch</span>
-                        </div>
-
-                        <span class="arrow-link">View Project &rarr;</span>
-                    </a>
-                </div>
-
-                <div class="tech-stack">
-                    <h3>Tech Stack</h3>
-                    <div class="stack-tags">
-                        <span class="tag">Kotlin</span>
-                        <span class="tag">Swift</span>
-                        <span class="tag">BitcoinJ</span>
-                        <span class="tag">Electrum Protocol</span>
-                        <span class="tag">SPV Architecture</span>
-                        <span class="tag">AES-256</span>
+                <h2>Projects</h2>
+                <a href="https://trustlesswallet.github.io/Trustless/" target="_blank" class="project-card">
+                    <h3>Trustless Wallet</h3>
+                    <p>A minimalist Bitcoin wallet for people who want full control. It helps you manage your coins without leaking data.</p>
+                    
+                    <div class="feature-tags">
+                        <span class="tag">Coin Control</span>
+                        <span class="tag">Address Tracker</span>
+                        <span class="tag">UTXO Management</span>
+                        <span class="tag">Custom Node (Electrum)</span>
+                        <span class="tag">BIP44</span>
+                        <span class="tag">Testnet Switch</span>
                     </div>
-                </div>
 
-                <div class="tech-stack">
-                    <h3>Security Verification</h3>
-                    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px;">
-                        Verify our releases via PGP:
-                    </p>
-                    <code class="pgp-key">
-                        FINGERPRINT: 8F24 91C8 44C3 0F29 1B22<br>
-                        6D9A 3E41 5C22 9F00 1A3B
-                    </code>
-                </div>
-
+                    <span class="arrow-link">View Project &rarr;</span>
+                </a>
             </div>
         </div>
 
